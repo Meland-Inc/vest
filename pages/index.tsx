@@ -117,12 +117,15 @@ const Home: NextPage<{
           </InputGroup>
           <InputGroup className="mb-3">
             {
-              (vcInfo.timeOfTGE > now) && <Button disabled onClick={reciveVc} variant="primary">
+              vcInfo.amount.eq(0) && <Button disabled onClick={reciveVc} variant="primary">not found vc info</Button>
+            }
+            {
+              !vcInfo.amount.eq(0) && (vcInfo.timeOfTGE > now) && <Button disabled onClick={reciveVc} variant="primary">
                 {Moment(now).to(vcInfo.timeOfTGE, true)}
               </Button>
             }
             {
-              (vcInfo.timeOfTGE < now) && <Button onClick={reciveVc} variant="primary">recive TGE and start vesting</Button>
+              !vcInfo.amount.eq(0) && (vcInfo.timeOfTGE < now) && <Button onClick={reciveVc} variant="primary">recive TGE and start vesting</Button>
             }
           </InputGroup>
         </>
