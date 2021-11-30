@@ -140,9 +140,9 @@ const Home: NextPage<{
             </tr>
           </thead>
           <tbody>
-            {vestings.map(v => {
+            {vestings.map((v, k) => {
               return (
-                <tr>
+                <tr key={k}>
                   <td style={{
                     width: "200px"
                   }}>{Moment(v.releaseTime).format("YYYY/MM/DD h:mm:ss")}</td>
