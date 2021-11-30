@@ -1,3 +1,3 @@
 ## Meland.ai(MELD) Faucet
 
-https://faucet.melandworld.com
+https://vest.public.melandworld.com
