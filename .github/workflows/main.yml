@@ -8,6 +8,9 @@ on:
 
   workflow_dispatch:
 
+env:
+  networkId: '0x539'
+
 jobs:
   build:
     runs-on: ubuntu-latest
