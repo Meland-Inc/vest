@@ -13,8 +13,7 @@ import { formatEther } from '@ethersproject/units';
 import logo from "../resources/logo@2x.png";
 import Moment from 'moment';
 
-const MELDAddress = '0x839F84E10218Bf498447C320999929D8270702A9'.toLowerCase();
-const VestAddress = '0x7105DD63586727763420e4eFac70aaB73723676A'.toLowerCase();
+const VestAddress = '0x4f986fa15223fBd7a70ed2ebE503FFD9CdaFe8d4'.toLowerCase();
 
 const styleSpan = {
   width: "10vw",

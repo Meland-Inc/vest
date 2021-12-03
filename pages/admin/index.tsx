@@ -12,8 +12,8 @@ import { BigNumber } from '@ethersproject/bignumber';
 import { formatEther } from '@ethersproject/units';
 import logo from "../../resources/logo@2x.png";
 
-const MELDAddress = '0x839F84E10218Bf498447C320999929D8270702A9'.toLowerCase();
-const VestAddress = '0xb58fA6AE197f32ad21C72Ac80643622Da01dEBcA'.toLowerCase();
+const MELDAddress = '0x62C7500B45d39ec64030FE44acB9a1037f1F127D'.toLowerCase();
+const VestAddress = '0x4f986fa15223fBd7a70ed2ebE503FFD9CdaFe8d4'.toLowerCase();
 
 const styleSpan = {
   width: "10vw",

@@ -25,7 +25,7 @@ export const addNetwork = async (web3Provider: Web3Provider, needNetworkId: stri
 	return web3Provider.send('wallet_addEthereumChain', [
 		{
 			chainId: needNetworkId,
-			chainName: 'BSC',
+			chainName: '(mumbai)BSC',
 			nativeCurrency: {
 				name: 'BSC Token',
 				symbol: 'BNB',
