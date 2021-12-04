@@ -59,6 +59,8 @@ const Admin: NextPage<{
         return;
     }
 
+    console.debug('ok');
+
     const MELDI = MELD__factory.connect(MELDAddress, provider.getSigner());
 
     const rb = await vestPool.viewTokenToVest();
