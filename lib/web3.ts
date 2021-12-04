@@ -25,14 +25,14 @@ export const addNetwork = async (web3Provider: Web3Provider, needNetworkId: stri
 	return web3Provider.send('wallet_addEthereumChain', [
 		{
 			chainId: needNetworkId,
-			chainName: '(mumbai)BSC',
+			chainName: 'BSC',
 			nativeCurrency: {
 				name: 'BSC Token',
 				symbol: 'BNB',
 				decimals: 18
 			},
-			rpcUrls: [ 'https://speedy-nodes-nyc.moralis.io/036db9847a8d6409b3dbcddc/polygon/mumbai' ],
-			blockExplorerUrls: [ 'https://mumbai.polygonscan.com' ]
+			rpcUrls: [ 'https://speedy-nodes-nyc.moralis.io/036db9847a8d6409b3dbcddc/bsc/mainnet' ],
+			blockExplorerUrls: [ 'https://bscscan.com/' ]
 		}
 	]);
 };

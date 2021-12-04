@@ -14,8 +14,8 @@ import logo from "../resources/logo@2x.png";
 import Moment from 'moment';
 import ThankYouLater from '../lib/ThankYouLater';
 
-const MELDAddress = '0x6DB09B78bE9D36971fe6d622d620035e5c2ba0bC'.toLowerCase();
-const VestAddress = '0x672B0fbc33158E0ad04ae7197A76c8d67708b7AB'.toLowerCase();
+const MELDAddress = '0xf8aE4Ef55628aacFb9Bd6E777b0F5D35C173F624'.toLowerCase();
+const VestAddress = '0xb4939DDfd7425FaE040A42BBb5220756973Fc329'.toLowerCase();
 
 const styleSpan = {
   width: "10vw",

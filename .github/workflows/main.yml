@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  networkId: '0x13881'
+  networkId: '0x38'
 
 jobs:
   build:
