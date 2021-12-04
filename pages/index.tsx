@@ -75,7 +75,14 @@ const Home: NextPage<{
       setLoading(true);
       await tx.wait();
       await initVesting(vcInfo!.beneficiary);
-      await watchAsset(MELDAddress, provider);
+      
+      // 添加代币失败忽略
+      try {
+        await watchAsset(MELDAddress, provider);
+      } catch(e) {
+
+      }
+
       setVcInfo({ ...vcInfo!, recived: true });
       setLoading(false);
     } catch (error) {
@@ -95,7 +102,7 @@ const Home: NextPage<{
 
   const vvvv = useMemo(() => {
     if (vcInfo && !vcInfo.recived) {
-      const statusInfo = `[${vcInfo.amount.lt(0) ? '*' : ''}]Normal []Dumping [${vcInfo.amount.eq(0) ? '*' : ''}]Uninvested`;
+      const statusInfo = `[${vcInfo.amount.gt(0) ? '*' : ''}]Normal [ ]Dumping [${vcInfo.amount.eq(0) ? '*' : ' '}]Uninvested`;
 
       return (
         <>
