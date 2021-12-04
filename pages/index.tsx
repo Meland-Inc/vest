@@ -14,6 +14,7 @@ import logo from "../resources/logo@2x.png";
 import Moment from 'moment';
 import ThankYouLater from '../lib/ThankYouLater';
 
+const MELDAddress = '0x6DB09B78bE9D36971fe6d622d620035e5c2ba0bC'.toLowerCase();
 const VestAddress = '0x672B0fbc33158E0ad04ae7197A76c8d67708b7AB'.toLowerCase();
 
 const styleSpan = {
@@ -74,6 +75,7 @@ const Home: NextPage<{
       setLoading(true);
       await tx.wait();
       await initVesting(vcInfo!.beneficiary);
+      await watchAsset(MELDAddress, provider);
       setVcInfo({ ...vcInfo!, recived: true });
       setLoading(false);
     } catch (error) {
@@ -93,11 +95,17 @@ const Home: NextPage<{
 
   const vvvv = useMemo(() => {
     if (vcInfo && !vcInfo.recived) {
+      const statusInfo = `[${vcInfo.amount.lt(0) ? '*' : ''}]Normal []Dumping [${vcInfo.amount.eq(0) ? '*' : ''}]Uninvested`;
+
       return (
         <>
           <InputGroup className="mb-3">
             <InputGroup.Text style={styleSpan}>amount total:</InputGroup.Text>
             <FormControl aria-label="amount" value={formatEther(vcInfo.amount)} disabled />
+          </InputGroup>
+          <InputGroup className="mb-3">
+            <InputGroup.Text style={styleSpan}>vc status:</InputGroup.Text>
+            <FormControl aria-label="amount" value={statusInfo} disabled />
           </InputGroup>
           <InputGroup className="mb-3">
             <InputGroup.Text style={styleSpan}>cliff month:</InputGroup.Text>

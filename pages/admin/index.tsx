@@ -12,7 +12,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 import { formatEther } from '@ethersproject/units';
 import logo from "../../resources/logo@2x.png";
 
-const MELDAddress = '0x62C7500B45d39ec64030FE44acB9a1037f1F127D'.toLowerCase();
+const MELDAddress = '0x6DB09B78bE9D36971fe6d622d620035e5c2ba0bC'.toLowerCase();
 const VestAddress = '0x672B0fbc33158E0ad04ae7197A76c8d67708b7AB'.toLowerCase();
 
 const styleSpan = {
