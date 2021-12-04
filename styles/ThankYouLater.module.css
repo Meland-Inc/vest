@@ -1,0 +1,26 @@
+.warp {
+    height: 80%;
+    position: fixed;
+    padding: 5vh 0 0 0;
+}
+
+.warp::after {
+    content: "Please read the whole thing";
+    display: block;
+    height: 5vh;
+    text-align: center;
+    line-height: 5vh;
+    width: 100%;
+    position: absolute;
+    top: 0vh;
+    left: 0;
+    color: aliceblue;
+    background: rgba(0, 0, 0);
+}
+
+.warp button {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

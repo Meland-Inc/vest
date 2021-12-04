@@ -1,19 +1,19 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
-import { getWeb3Provider, switchToNetwork, watchAsset } from '../../lib/web3';
+import { getWeb3Provider, switchToNetwork } from '../../lib/web3';
 import { VestPool__factory, MELD__factory } from '../../contracts';
 import { useState, useCallback, useMemo, useEffect } from 'react';
 import ReactLoading from 'react-loading';
 import { Web3Provider } from '@ethersproject/providers';
-import { Button, InputGroup, FormControl, Table } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BigNumber } from '@ethersproject/bignumber';
 import { formatEther } from '@ethersproject/units';
 import logo from "../../resources/logo@2x.png";
 
 const MELDAddress = '0x62C7500B45d39ec64030FE44acB9a1037f1F127D'.toLowerCase();
-const VestAddress = '0x4f986fa15223fBd7a70ed2ebE503FFD9CdaFe8d4'.toLowerCase();
+const VestAddress = '0x672B0fbc33158E0ad04ae7197A76c8d67708b7AB'.toLowerCase();
 
 const styleSpan = {
   width: "10vw",

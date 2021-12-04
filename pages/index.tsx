@@ -12,8 +12,9 @@ import { BigNumber } from '@ethersproject/bignumber';
 import { formatEther } from '@ethersproject/units';
 import logo from "../resources/logo@2x.png";
 import Moment from 'moment';
+import ThankYouLater from '../lib/ThankYouLater';
 
-const VestAddress = '0x4f986fa15223fBd7a70ed2ebE503FFD9CdaFe8d4'.toLowerCase();
+const VestAddress = '0x672B0fbc33158E0ad04ae7197A76c8d67708b7AB'.toLowerCase();
 
 const styleSpan = {
   width: "10vw",
@@ -107,7 +108,7 @@ const Home: NextPage<{
             <FormControl aria-label="amount" value={`${vcInfo.vestingMonth.toNumber()} month`} disabled />
           </InputGroup>
           <InputGroup className="mb-3">
-            <InputGroup.Text style={styleSpan}>cliffMonth:</InputGroup.Text>
+            <InputGroup.Text style={styleSpan}>unlock TGE:</InputGroup.Text>
             <FormControl aria-label="amount" value={`${vcInfo.unlockTGE.toNumber()}%`} disabled />
           </InputGroup>
           <InputGroup className="mb-3">
@@ -275,6 +276,8 @@ const Home: NextPage<{
       <div className={styles.he}>
         <img className={styles.logo} src={logo.src} />
       </div>
+
+      <ThankYouLater />
 
       {
         loading
