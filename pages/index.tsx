@@ -75,11 +75,11 @@ const Home: NextPage<{
       setLoading(true);
       await tx.wait();
       await initVesting(vcInfo!.beneficiary);
-      
+
       // 添加代币失败忽略
       try {
         await watchAsset(MELDAddress, provider);
-      } catch(e) {
+      } catch (e) {
 
       }
 
@@ -102,17 +102,17 @@ const Home: NextPage<{
 
   const vvvv = useMemo(() => {
     if (vcInfo && !vcInfo.recived) {
-      const statusInfo = `[${vcInfo.amount.gt(0) ? '*' : ''}]Normal [ ]Dumping [${vcInfo.amount.eq(0) ? '*' : ' '}]Uninvested`;
+      const statusInfo = `[${vcInfo.amount.gt(0) ? '*' : ' '}]Normal [ ]Dumping [${vcInfo.amount.eq(0) ? '*' : ' '}]Uninvested`;
 
       return (
         <>
           <InputGroup className="mb-3">
-            <InputGroup.Text style={styleSpan}>amount total:</InputGroup.Text>
-            <FormControl aria-label="amount" value={formatEther(vcInfo.amount)} disabled />
-          </InputGroup>
-          <InputGroup className="mb-3">
             <InputGroup.Text style={styleSpan}>vc status:</InputGroup.Text>
             <FormControl aria-label="amount" value={statusInfo} disabled />
+          </InputGroup>
+          <InputGroup className="mb-3">
+            <InputGroup.Text style={styleSpan}>amount total:</InputGroup.Text>
+            <FormControl aria-label="amount" value={formatEther(vcInfo.amount)} disabled />
           </InputGroup>
           <InputGroup className="mb-3">
             <InputGroup.Text style={styleSpan}>cliff month:</InputGroup.Text>
@@ -128,7 +128,9 @@ const Home: NextPage<{
           </InputGroup>
           <InputGroup className="mb-3">
             <InputGroup.Text style={styleSpan}>TGE Time:</InputGroup.Text>
-            <FormControl aria-label="amount" value={`${Moment(vcInfo.timeOfTGE).format("YYYY/MM/DD h:mm:ss")}`} disabled />
+            <FormControl aria-label="amount" value={
+              vcInfo.amount.gt(0) ? Moment(vcInfo.timeOfTGE).format('YYYY-MM-DD HH:mm:ss') : '-'
+            } disabled />
           </InputGroup>
           <InputGroup className="mb-3">
             {

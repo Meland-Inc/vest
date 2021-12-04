@@ -10,24 +10,34 @@ const ThankYouLater = () => {
     const ref = useRef<HTMLDivElement>(null);
     const [bottomed, setBottomed] = useState(false);
     const [show, setShow] = useState(false);
+    const [timeout,  setTimeout] = useState(60);
 
     useEffect(() => {
         if (!localStorage.getItem(cacheKey)) {
             setShow(true)
         }
-        
+
         if (!ref.current) {
             return;
         }
 
         const el = ref.current;
 
-        el.onscroll = () => {
-            if (el.scrollTop == el.scrollHeight - el.clientHeight) {
-                setBottomed(true);
-            }
+        if (timeout <= 0
+            && Math.floor(el.scrollTop) >= Math.floor(el.scrollHeight - el.clientHeight - 300)
+        ) {
+            setBottomed(true);
         }
-    }, [ref.current]);
+    }, [ref.current, timeout]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTimeout(timeout => timeout - 1);
+        }, 1000);
+        return () => {
+            clearInterval(interval)
+        };
+    }, []);
 
     const readyThanYouLater = () => {
         localStorage.setItem(cacheKey, 'true');
@@ -39,16 +49,14 @@ const ThankYouLater = () => {
             return null;
         }
 
-        if (!bottomed) {
-            return null;
-        }
-
         return (
-            <Button onClick={readyThanYouLater} variant="primary">
-                Okay, I finished reading it.
+            <Button disabled={!bottomed} onClick={readyThanYouLater} variant="primary">
+                OK, I understand and take own risk
+
+                {timeout > 0 && `(${timeout} seconds.)`}
             </Button>
         )
-    }, [ref.current, bottomed]);
+    }, [ref.current, bottomed, timeout]);
 
     if (!show) {
         return null;

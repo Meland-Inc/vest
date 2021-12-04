@@ -14,3 +14,13 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.mb-3 {
+  position: relative;
+}
+
+.mb-3 button {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
