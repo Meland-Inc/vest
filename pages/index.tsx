@@ -228,21 +228,22 @@ const Home: NextPage<{
     if (!provider) {
       return;
     }
-    const vestPool = VestPool__factory.connect(VestAddress, provider.getSigner());
-    const filter = vestPool.filters.TokenVestingAdded(undefined, _account);
-    const events = await vestPool.queryFilter(filter);
-    const promises = events.map(async event => {
-      const v = await vestPool.vestings(event.args.vestingId);
-      return {
-        vestingId: event.args.vestingId,
-        beneficiary: v.beneficiary,
-        amount: v.amount,
-        releaseTime: new Date(v.releaseTime.toNumber() * 1000),
-        released: v.released
-      }
-    });
-    const v = await Promise.all(promises);
-    setVestings(v);
+    return;
+    // const vestPool = VestPool__factory.connect(VestAddress, provider.getSigner());
+    // const filter = vestPool.filters.TokenVestingAdded(undefined, _account);
+    // const events = await vestPool.queryFilter(filter);
+    // const promises = events.map(async event => {
+    //   const v = await vestPool.vestings(event.args.vestingId);
+    //   return {
+    //     vestingId: event.args.vestingId,
+    //     beneficiary: v.beneficiary,
+    //     amount: v.amount,
+    //     releaseTime: new Date(v.releaseTime.toNumber() * 1000),
+    //     released: v.released
+    //   }
+    // });
+    // const v = await Promise.all(promises);
+    // setVestings(v);
   }
 
   const connectWallet = useCallback(async () => {
