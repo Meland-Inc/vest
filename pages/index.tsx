@@ -13,9 +13,12 @@ import { formatEther } from '@ethersproject/units';
 import logo from "../resources/logo@2x.png";
 import Moment from 'moment';
 import ThankYouLater from '../lib/ThankYouLater';
+import { gql, GraphQLClient } from 'graphql-request';
 
 const MELDAddress = '0xf8aE4Ef55628aacFb9Bd6E777b0F5D35C173F624'.toLowerCase();
 const VestAddress = '0xb4939DDfd7425FaE040A42BBb5220756973Fc329'.toLowerCase();
+
+const gqlClient = new GraphQLClient("https://api.thegraph.com/subgraphs/name/hongjianghuang/melandvest");
 
 const styleSpan = {
   width: "10vw",
@@ -228,22 +231,35 @@ const Home: NextPage<{
     if (!provider) {
       return;
     }
-    return;
-    // const vestPool = VestPool__factory.connect(VestAddress, provider.getSigner());
-    // const filter = vestPool.filters.TokenVestingAdded(undefined, _account);
-    // const events = await vestPool.queryFilter(filter);
-    // const promises = events.map(async event => {
-    //   const v = await vestPool.vestings(event.args.vestingId);
-    //   return {
-    //     vestingId: event.args.vestingId,
-    //     beneficiary: v.beneficiary,
-    //     amount: v.amount,
-    //     releaseTime: new Date(v.releaseTime.toNumber() * 1000),
-    //     released: v.released
-    //   }
-    // });
-    // const v = await Promise.all(promises);
-    // setVestings(v);
+    const vcVestings: {
+      id: string,
+      amount: string,
+      beneficiary: string,
+      releaseTime: string,
+      released: boolean
+    }[] = await gqlClient.request(gql`
+    query getVcVesting($id: Bytes!) {
+      vcVestings(first: 100, where: { beneficiary: $id }) {
+       id
+       amount
+       beneficiary
+       releaseTime
+       released
+     }
+    }
+    `, { id: _account }).then(res => res.vcVestings);
+
+    // @ts-ignore
+    const rvs = vcVestings.map(v => {
+      return {
+        vestingId: BigNumber.from(v.id),
+        beneficiary: v.beneficiary,
+        amount: BigNumber.from(v.amount),
+        releaseTime: new Date(parseInt(v.releaseTime)),
+        released: v.released
+      }
+    });
+    setVestings(rvs);
   }
 
   const connectWallet = useCallback(async () => {
