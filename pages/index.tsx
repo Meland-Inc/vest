@@ -97,9 +97,19 @@ const Home: NextPage<{
     if (!provider) {
       return;
     }
+    const promiseTimeout = () => {
+      return new Promise(resolve => {
+          setTimeout(() => {
+              resolve(true);
+          }, 3000);
+      });
+   }
     const vestPool = VestPool__factory.connect(VestAddress, provider.getSigner());
     const tx = await vestPool.release(vestId);
     await tx.wait();
+    // wait for 3 seconds
+    // idnexer async
+    await promiseTimeout();
     await initVesting(account);
   }, [provider, vcInfo, account]);
 
@@ -255,7 +265,7 @@ const Home: NextPage<{
         vestingId: BigNumber.from(v.id),
         beneficiary: v.beneficiary,
         amount: BigNumber.from(v.amount),
-        releaseTime: new Date(parseInt(v.releaseTime)),
+        releaseTime: new Date(parseInt(v.releaseTime) * 1000),
         released: v.released
       }
     });
