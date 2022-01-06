@@ -178,7 +178,7 @@ const Home: NextPage<{
                 <tr key={k}>
                   <td style={{
                     width: "200px"
-                  }}>{Moment(v.releaseTime).format("YYYY/MM/DD HH:mm:ss")}</td>
+                  }}>UTC {Moment.utc(v.releaseTime).format("YYYY/MM/DD HH:mm:ss")}</td>
                   <td>{formatEther(v.amount)}</td>
                   <td>
                     {v.released && <span>released</span>}
